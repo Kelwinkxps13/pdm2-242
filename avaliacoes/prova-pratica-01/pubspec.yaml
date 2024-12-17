@@ -1,0 +1,9 @@
+name: prova_pratica_01
+description: Aplicação com SQLite e Dart
+
+environment:
+  sdk: ">=3.0.0 <3.2.0" # Compatível com sua versão do Dart
+
+dependencies:
+  sqlite3: ^2.0.0       # Use uma versão compatível
+  ffi: ^2.0.0           # Use uma versão compatível
