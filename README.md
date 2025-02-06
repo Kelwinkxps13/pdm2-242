@@ -1,6 +1,5 @@
 # pdm2-242
-disciplina de programaçao de dispositivos moveis 2, do professor Ricardo Duarte Taveira, no IFCE - Campus de Fortaleza, melhorada.
-
+disciplina de programaçao de dispositivos moveis 2, do professor Ricardo Duarte Taveira, no IFCE - Campus de Fortaleza.
 ### Ferramentas
 - Visual Studio Code
 
