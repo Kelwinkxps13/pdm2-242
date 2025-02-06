@@ -39,9 +39,8 @@ class _CartList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var itemNameStyle = Theme.of(context).textTheme.titleLarge;
-    // This gets the current state of CartModel and also tells Flutter
-    // to rebuild this widget when CartModel notifies listeners (in other words,
-    // when it changes).
+    // Obtém o estado atual do CartModel e instrui o Flutter
+    // a reconstruir este widget quando o CartModel notifica os listeners.
     var cart = context.watch<CartModel>();
 
     return ListView.builder(
@@ -75,23 +74,36 @@ class _CartTotal extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            // Another way to listen to a model's change is to include
-            // the Consumer widget. This widget will automatically listen
-            // to CartModel and rerun its builder on every change.
-            //
-            // The important thing is that it will not rebuild
-            // the rest of the widgets in this build method.
             Consumer<CartModel>(
-                builder: (context, cart, child) =>
-                    Text('\$${cart.totalPrice}', style: hugeStyle)),
+              builder: (context, cart, child) =>
+                  Text('\$${cart.totalPrice}', style: hugeStyle),
+            ),
             const SizedBox(width: 24),
-            FilledButton(
-              onPressed: () {
-                ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text('Buying not supported yet.')));
+            Consumer<CartModel>(
+              builder: (context, cart, child) {
+                return FilledButton(
+                  onPressed: () {
+                    // Nome completo do aluno
+                    final studentName = "Kelwin Jhackson Gonçalves de Moura";
+                    
+                    // Cria uma string com os itens e seus preços, separados por " + "
+                    final itemsText = cart.items
+                        .map((item) => '${item.name} - \$ ${item.price}')
+                        .join(' + ');
+                    
+                    // Formata a mensagem final com o nome completo do aluno
+                    final message =
+                        '$studentName: $itemsText = Total \$ ${cart.totalPrice}';
+
+                    // Exibe o SnackBar com a mensagem gerada
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text(message)),
+                    );
+                  },
+                  style: TextButton.styleFrom(foregroundColor: Colors.white),
+                  child: const Text('BUY'),
+                );
               },
-              style: TextButton.styleFrom(foregroundColor: Colors.white),
-              child: const Text('BUY'),
             ),
           ],
         ),
